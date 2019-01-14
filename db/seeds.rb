@@ -49,8 +49,8 @@ end
 for j in 0...pelis2.length
     View.create({
     date: Date.today(),
-    rating: j,
+    rating: j+1,
     user_id: test_user2.id,
-    movie_id: pelis[j].id
+    movie_id: pelis2[j].id
     })
 end
