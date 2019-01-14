@@ -25,14 +25,32 @@ test_user = User.create({username: "user1",
             city: "Guayaquil",
             country: "Ecuador"
             })
-pelis = Movie.order("rating DESC").first(10)
+
+test_user2 = User.create({username: "user2", 
+            pass: "pass2",
+            dob: Date.parse("1997/08/07"),
+            type_account: "basico",
+            city: "Guayaquil",
+            country: "Ecuador"
+            })
+
+pelis = Movie.order("rating DESC").distinct.first(10)
+pelis2 = Movie.distinct.first(10)
+
 for i in 0...pelis.length
-    for j in 0...i
-        View.create({
-        date: Date.today(),
-        rating: 10,
-        user_id: test_user.id,
-        movie_id: pelis[i].id
-        })
-    end
+    View.create({
+    date: Date.today(),
+    rating: 10,
+    user_id: test_user.id,
+    movie_id: pelis[i].id
+    })
+end
+
+for j in 0...pelis2.length
+    View.create({
+    date: Date.today(),
+    rating: j,
+    user_id: test_user2.id,
+    movie_id: pelis[j].id
+    })
 end
