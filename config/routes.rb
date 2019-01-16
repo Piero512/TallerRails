@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "ratings/" => "ratings#index"
   get "ratings/new"
   post "ratings/new" => "ratings#create"
+  get "ratings/:id" => "ratings#show"
 
   mount Ratings::API => "/api/ratings"
   mount Movies::API => "/api/movies"

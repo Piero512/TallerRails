@@ -19,5 +19,9 @@ class RatingsController < ApplicationController
   def view_params
     params.permit(:user_id, :movie_id,:rating)
   end
+
+  def show
+    @rating = View.joins(:user,:movie).select("movies.title ,movies.created_at, users.username, views.rating").find(params[:id])
+  end
 end
   
