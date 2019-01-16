@@ -5,7 +5,7 @@ module Ratings
             View.all()
         end
         params do
-            requires :id, type: Integer, desc: "Product id"
+            requires :id, type: Integer, desc: "ID usuario"
         end
         get ':id' do
             begin
@@ -29,6 +29,9 @@ module Ratings
             end
         end
         
+        
+        
+        
         put ':id' do 
             begin
                 vista = View.find(params[:id])
@@ -37,15 +40,16 @@ module Ratings
                 rating: params[:rating],
                 user_id: params[:user_id],
                 movie_id: params[:movie_id],})
-            {status: :success}
-        else
-            error!({ status: :error, message: vista.errors.full_messages.first }) if product.errors.any?
-                    end
-    rescue ActiveRecord::RecordNotFound
-        error!({status: :error, message: :not_found},404)
+                {status: :success}
+            else
+                error!({ status: :error, message: vista.errors.full_messages.first }) if product.errors.any?
+                        end
+        rescue ActiveRecord::RecordNotFound
+            error!({status: :error, message: :not_found},404)
+        end
+        
     end
-end
-
-
+    
+    
 end
 end

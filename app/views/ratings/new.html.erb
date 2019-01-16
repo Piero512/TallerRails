@@ -1,0 +1,12 @@
+<h1>Crear ratings</h1>
+<%= form_tag do %>
+    <% options = options_from_collection_for_select(@lista_pelis, 'id', 'title') %>
+    <%= label_tag(:movie_id, "Película") %>
+    <%= select_tag(:movie_id, options) %>
+    <%= label_tag(:user_id, "Usuario") %>
+    <% users = options_from_collection_for_select(@lista_users, 'id','username') %>
+    <%=select_tag(:user_id, users) %>
+    <%= label_tag(:rating,"Rating") %>
+    <%=select_tag :rating, options_for_select((1..10).map{|i| [i,i.to_s]})%>
+    <%= submit_tag("Añadir Rating") %>
+<% end%>
